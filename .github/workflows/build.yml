@@ -1,6 +1,6 @@
 name: "build"
 
-on: ["pull_request", "push"]
+on: ["pull_request", "push", "workflow_dispatch"]
 
 jobs:
   build:
@@ -15,3 +15,7 @@ jobs:
           java-version: "16"
       - name: "Clean Build"
         run: "./gradlew clean build"
+      - name: "Upload a Build Artifact"
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: build/libs/**
